@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">STG Uploader</string>
+    <string name="mainTitle">STG Uploader</string>
+    <string name="buttonLoginAgain">Try logging in again</string>
+    <string name="loginFailed">Sorry something went wrong there. Give it another shot. Or press menu to exit</string>
+    <string name="checkingLogin">Checking login status</string>
+    <string name="wifiStateDefault">WiFi Initializing</string>
+    <string name="buttonWifiSettings">WiFi Settings</string>
+    <string name="autoPowerOffHint">Once the upload is complete the device will automatically power off</string>
+    <string name="statusUploading">Uploading</string>
+    <string name="statusComplete">Complete</string>
+    <string name="statusNotStarted">Not Started</string>
+    <string name="connectionStateConnecting">Connecting</string>
+    <string name="connectionStateWifiEnabled">WiFi Enabled</string>
+    <string name="connectionStateWifiDisabled">WiFi Disabled</string>
+    <string name="connectionStateConnectedTo">Connected To</string>
+    <string name="connectionStateWifiScanning">Scanning</string>
+    <string name="upload_videos">Upload videos (smaller than 100MB)</string>
+    <string name="delete_files_after_upload">Delete files after upload</string>
+    <string name="clear_upload_database">Clear Upload Database</string>
+    <string name="start_upload">Start Upload</string>
+    <string name="settings">Settings</string>
+    <string name="previously_uploaded">Previously Uploaded</string>
+    <string name="default_uploaded_count">0</string>
+    <string name="photos_ready_to_upload">Photos ready to upload</string>
+    <string name="default_to_upload_count">0</string>
+    <string name="upload_status">Upload Status:</string>
+</resources>
