@@ -9,11 +9,16 @@ import java.util.List;
 
 class FilesystemScanner {
 
-    private static final String[] imageFormats = {".jpg", ".arw"};
+    private static final String[] rawFormats = {".arw"};
+    private static final String[] jpegFormats = {".jpg"};
     private static final String[] videoFormats = {".mts", ".mp4"};
 
-    public static List<File> getImagesOnExternalStorage() {
-        return getFilteredFileList(Environment.getExternalStorageDirectory(), imageFormats);
+    public static List<File> getRawsOnExternalStorage() {
+        return getFilteredFileList(Environment.getExternalStorageDirectory(), rawFormats);
+    }
+
+    public static List<File> getJpegsOnExternalStorage() {
+        return getFilteredFileList(Environment.getExternalStorageDirectory(), jpegFormats);
     }
 
     public static List<File> getVideosOnExternalStorage() {

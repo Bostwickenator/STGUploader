@@ -156,12 +156,17 @@ public class MainActivity extends BaseActivity {
     }
 
     private List<File> getFilesToUpload(){
-        List<File> files = FilesystemScanner.getImagesOnExternalStorage();
+        List<File> files = FilesystemScanner.getJpegsOnExternalStorage();
 
+        if(SettingsStore.getSettingsStore().getBoolean(SettingsActivity.SETTING_UPLOAD_RAW, true)) {
+            List<File> videos = FilesystemScanner.getRawsOnExternalStorage();
+            files.addAll(videos);
+        }
         if(SettingsStore.getSettingsStore().getBoolean(SettingsActivity.SETTING_UPLOAD_VIDEOS, false)) {
             List<File> videos = FilesystemScanner.getVideosOnExternalStorage();
             files.addAll(videos);
         }
+
         uploadRecordDatabase.filterFileList(files);
         return files;
     }
@@ -180,7 +185,7 @@ public class MainActivity extends BaseActivity {
             mUploadTask.cancel(true);
         }
         if (!goingToSettings) {
-            WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             Logger.info("setting wifi enabled state to " + false);
             wifiManager.setWifiEnabled(false);
         }

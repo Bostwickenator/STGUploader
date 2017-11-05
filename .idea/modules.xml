@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GooglePhotosUploader.iml" filepath="$PROJECT_DIR$/GooglePhotosUploader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/STGUploader.iml" filepath="$PROJECT_DIR$/STGUploader.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/oauth-library-release/oauth-library-release.iml" filepath="$PROJECT_DIR$/oauth-library-release/oauth-library-release.iml" />
     </modules>

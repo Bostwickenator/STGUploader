@@ -25,4 +25,5 @@
     <string name="photos_ready_to_upload">Photos ready to upload</string>
     <string name="default_to_upload_count">0</string>
     <string name="upload_status">Upload Status:</string>
+    <string name="upload_raw">Upload RAW files</string>
 </resources>

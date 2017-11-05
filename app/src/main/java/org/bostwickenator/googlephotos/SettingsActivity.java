@@ -13,6 +13,7 @@ import com.github.ma1co.pmcademo.app.BaseActivity;
 public class SettingsActivity extends BaseActivity {
 
     public static final String SETTING_UPLOAD_VIDEOS = "upload_videos";
+    public static final String SETTING_UPLOAD_RAW = "upload_raw";
     public static final String SETTING_DELETE_AFTER_UPLOAD = "delete_after_upload";
 
     private SettingsStore mSharedPreferences;
@@ -23,7 +24,6 @@ public class SettingsActivity extends BaseActivity {
         mSharedPreferences = SettingsStore.getSettingsStore();
         setContentView(R.layout.activity_settings);
 
-
         View buttonClearDatabase = findViewById(R.id.buttonClearUploadDatabase);
 
         buttonClearDatabase.setOnClickListener(new View.OnClickListener() {
@@ -33,13 +33,14 @@ public class SettingsActivity extends BaseActivity {
             }
         });
 
-        setupCheckbox(R.id.checkBoxDeleteAfterUpload, SETTING_DELETE_AFTER_UPLOAD);
-        setupCheckbox(R.id.checkBoxUploadVideos, SETTING_UPLOAD_VIDEOS);
+        setupCheckbox(R.id.checkBoxDeleteAfterUpload, SETTING_DELETE_AFTER_UPLOAD, false);
+        setupCheckbox(R.id.checkBoxUploadVideos, SETTING_UPLOAD_VIDEOS, false);
+        setupCheckbox(R.id.checkBoxUploadRaw, SETTING_UPLOAD_RAW, true);
     }
 
-    private void setupCheckbox(int id, final String setting) {
+    private void setupCheckbox(int id, final String setting, boolean def) {
         CheckBox checkBox = (CheckBox) findViewById(id);
-        checkBox.setChecked(mSharedPreferences.getBoolean(setting, false));
+        checkBox.setChecked(mSharedPreferences.getBoolean(setting, def));
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

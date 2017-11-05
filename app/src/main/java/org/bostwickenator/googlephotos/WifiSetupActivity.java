@@ -33,7 +33,7 @@ public class WifiSetupActivity extends Activity {
 
         AppInit.initApp();
 
-        wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
         if(hasConnection()){ //Short circuit everything if we have some kind of upstream connection. Useful in emulators
