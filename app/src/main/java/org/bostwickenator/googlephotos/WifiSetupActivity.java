@@ -124,7 +124,6 @@ public class WifiSetupActivity extends Activity {
                         summary = res.getString(R.string.connectionStateConnecting);
                         break;
                     default:
-                        res.getString(0, "test");
                         summary = res.getString(R.string.connectionStateWifiEnabled);
                 }
             }
