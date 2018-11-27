@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "org.bostwickenator.googlephotos"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 5
-        versionName "1.4"
+        versionCode 6
+        versionName "1.5"
         multiDexEnabled false
     }
     buildTypes {
@@ -21,19 +21,19 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.github.ma1co.OpenMemories-Framework:framework:-SNAPSHOT'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:23.3.0'
+    implementation 'com.github.ma1co.OpenMemories-Framework:framework:-SNAPSHOT'
     // If you need direct access to the Sony APIs, you can add this line, too:
-    provided 'com.github.ma1co.OpenMemories-Framework:stubs:-SNAPSHOT'
-    compile('com.google.api-client:google-api-client-android:1.20.0') {
+    compileOnly 'com.github.ma1co.OpenMemories-Framework:stubs:-SNAPSHOT'
+    implementation('com.google.api-client:google-api-client-android:1.20.0') {
         exclude module: 'httpclient'
     }
-    compile('com.google.http-client:google-http-client-gson:1.20.0') {
+    implementation('com.google.http-client:google-http-client-gson:1.20.0') {
         exclude module: 'httpclient'
     }
-    compile project(':oauth-library-release')
+    implementation project(':oauth-library-release')
 }
 repositories {
     jcenter()
