@@ -63,7 +63,7 @@ public class PicasawebClient {
     }
 
     private HttpsURLConnection getConnection() throws Exception {
-        HttpsURLConnection connection = (HttpsURLConnection) new URL(API_PREFIX + "default/albumid/" + "default").openConnection();
+        HttpsURLConnection connection = (HttpsURLConnection) new URL(API_PREFIX + "default/albumid/" + "default" + "?deprecation-extension=true").openConnection();
         connection.setRequestMethod("POST");
         connection.setDoOutput(true); // Triggers POST.
         connection.setRequestProperty("Authorization", "Bearer " + credential.getAccessToken());
