@@ -1,5 +1,6 @@
 package org.bostwickenator.googlephotos;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,7 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.github.ma1co.pmcademo.app.Logger;
-
+@SuppressLint("MissingPermission")
 public class WifiSetupActivity extends Activity {
 
     private ConnectivityManager connectivityManager;

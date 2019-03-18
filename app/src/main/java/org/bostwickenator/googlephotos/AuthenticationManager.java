@@ -24,10 +24,12 @@ import com.wuman.android.auth.oauth2.store.FileCredentialStore;
 import java.io.IOException;
 import java.util.Collections;
 
+import static org.bostwickenator.googlephotos.AuthCreds.CLIENT_ID;      // Client Id string
+import static org.bostwickenator.googlephotos.AuthCreds.CLIENT_SECRET;  // Client Secret string
+
 class AuthenticationManager {
 
-    private static final String CLIENT_ID = "[id_here]";
-    private static final String CLIENT_SECRET = "[secret_here]";
+
 
     private static PicasawebClient authenticatedClient;
 
