@@ -9,8 +9,8 @@ android {
         minSdkVersion 10
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 23
-        versionCode 8
-        versionName "1.7"
+        versionCode 9
+        versionName "1.8"
         multiDexEnabled false
     }
     buildTypes {

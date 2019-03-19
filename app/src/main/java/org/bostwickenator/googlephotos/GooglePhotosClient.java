@@ -24,13 +24,11 @@ public class GooglePhotosClient {
     public void httpPhotoPost(File file) throws Exception {
 
         HttpsURLConnection connection = (HttpsURLConnection) new URL("https://photoslibrary.googleapis.com/v1/uploads").openConnection();
-    //    connection.setUseCaches(false);
-
-
+        connection.setUseCaches(false);
         connection.setRequestProperty("Authorization", "Bearer " + credential.getAccessToken());
-
-       // connection.setRequestProperty("Connection", "close");
+        connection.setRequestProperty("Connection", "close");
         connection.setRequestProperty("Content-Type", "application/octet-stream");
+        connection.setRequestProperty("Transfer-Encoding", "chunked");
         connection.setDoOutput(true); // Triggers POST.
         connection.setRequestMethod("POST");
         connection.setRequestProperty("X-Goog-Upload-File-Name", file.getName());
