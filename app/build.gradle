@@ -7,9 +7,10 @@ android {
     defaultConfig {
         applicationId "org.bostwickenator.googlephotos"
         minSdkVersion 10
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 23
-        versionCode 7
-        versionName "1.6"
+        versionCode 8
+        versionName "1.7"
         multiDexEnabled false
     }
     buildTypes {

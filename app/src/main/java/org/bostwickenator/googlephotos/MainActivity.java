@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
@@ -38,7 +39,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
 
         progressBarUploadProgress = (ProgressBar) findViewById(R.id.progressBarUploadProgress);
 
@@ -75,6 +75,7 @@ public class MainActivity extends BaseActivity {
     private static final int NOT_INITIALIZED = -1;
 
     private int toUploadCount = NOT_INITIALIZED;
+
 
     private void updateNumberOfPhotos() {
 
@@ -128,14 +129,14 @@ public class MainActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                PicasawebClient picasawebClient = AuthenticationManager.authorize(MainActivity.this);
+                GooglePhotosClient googlePhotosClient = AuthenticationManager.authorize(MainActivity.this);
 
                 List<File> files = getFilesToUpload();
 
                 totalFiles = files.size();
                 for(int i = 0; i < totalFiles; i++) {
                     File file = files.get(i);
-                    picasawebClient.httpPhotoPost(file);
+                    googlePhotosClient.httpPhotoPost(file);
                     if (SettingsStore.getSettingsStore().getBoolean(SettingsActivity.SETTING_DELETE_AFTER_UPLOAD, false)) {
                        file.delete();
                     } else {

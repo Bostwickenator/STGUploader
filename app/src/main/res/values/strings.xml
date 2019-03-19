@@ -2,7 +2,9 @@
     <string name="app_name">STG Uploader</string>
     <string name="mainTitle">STG Uploader</string>
     <string name="buttonLoginAgain">Try logging in again</string>
-    <string name="loginFailed">Sorry something went wrong there. Give it another shot. Or press menu to exit</string>
+    <string name="loginFailed">Sorry something went wrong there. Give it another shot. Or press menu to exit.</string>
+    <string name="noCredentials">Create credentials file at stg-uploader.xyz</string>
+    <string name="oldCredentials">Credentials out of date. Create new credentials file at stg-uploader.xyz.\n\nC.DAT must be newer than 2019-03-18</string>
     <string name="checkingLogin">Checking login status</string>
     <string name="wifiStateDefault">WiFi Initializing</string>
     <string name="buttonWifiSettings">WiFi Settings</string>

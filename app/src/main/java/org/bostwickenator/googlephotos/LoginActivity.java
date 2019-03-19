@@ -5,9 +5,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ma1co.pmcademo.app.BaseActivity;
 import com.github.ma1co.pmcademo.app.Logger;
+
+import java.io.File;
 
 public class LoginActivity extends BaseActivity {
 
@@ -31,12 +34,16 @@ public class LoginActivity extends BaseActivity {
                 new LoginTask().execute();
             }
         });
-        new LoginTask().execute();
+
+
+        if(checkIfCredentialsUpToDate()) {
+            new LoginTask().execute();
+        }
     }
 
     class LoginTask extends AsyncTask<Void, Void, Void> {
 
-        PicasawebClient picasawebClient;
+        GooglePhotosClient googlePhotosClient;
         Exception exception;
 
         @Override
@@ -48,7 +55,7 @@ public class LoginActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                picasawebClient = AuthenticationManager.authorize(LoginActivity.this);
+                googlePhotosClient = AuthenticationManager.authorize(LoginActivity.this);
             } catch (Exception e) {
                 exception = e;
             }
@@ -58,17 +65,36 @@ public class LoginActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if(picasawebClient != null) {
+            if(googlePhotosClient != null) {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             }
             if(exception != null) {
                 Logger.error(exception.toString());
-                labelLoginState.setText(R.string.loginFailed);
+                setErrorState(R.string.loginFailed);
                 buttonLogin.setVisibility(View.VISIBLE);
-                progress.setVisibility(View.GONE);
             }
         }
+    }
+
+    private void setErrorState(int id){
+        labelLoginState.setText(id);
+        progress.setVisibility(View.GONE);
+    }
+
+    private boolean checkIfCredentialsUpToDate(){
+        File c = FileGetter.getFile("C.DAT");
+        if (c != null && c.exists()) {
+            if(c.lastModified() < 1552867200000L) {
+                setErrorState(R.string.oldCredentials);
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            setErrorState(R.string.noCredentials);
+        }
+        return false;
     }
 
     /*@Override

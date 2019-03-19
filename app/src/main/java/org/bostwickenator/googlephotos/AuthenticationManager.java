@@ -1,11 +1,13 @@
 package org.bostwickenator.googlephotos;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.github.ma1co.pmcademo.app.Logger;
 import com.google.api.client.auth.oauth2.BearerToken;
@@ -21,6 +23,7 @@ import com.wuman.android.auth.DialogFragmentController;
 import com.wuman.android.auth.OAuthManager;
 import com.wuman.android.auth.oauth2.store.FileCredentialStore;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
@@ -31,21 +34,20 @@ class AuthenticationManager {
 
 
 
-    private static PicasawebClient authenticatedClient;
+    private static GooglePhotosClient authenticatedClient;
 
     private static AuthorizationUIController controller;
 
     private static OAuthManager.OAuthFuture<Credential> future;
 
     /** Authorizes the installed application to access user's protected data. */
-    public static PicasawebClient authorize(FragmentActivity context) throws Exception {
+    public static GooglePhotosClient authorize(FragmentActivity context) throws Exception {
 
         if(authenticatedClient != null){
             return authenticatedClient;
         }
 
         FileCredentialStore credentialStore = new FileCredentialStore(FileGetter.getFile("C.DAT"), new JacksonFactory());
-
         AuthorizationFlow.Builder builder = new AuthorizationFlow.Builder(
                 BearerToken.authorizationHeaderAccessMethod(),
                 AndroidHttp.newCompatibleTransport(),
@@ -55,7 +57,7 @@ class AuthenticationManager {
                 CLIENT_ID,
                 "https://accounts.google.com/o/oauth2/v2/auth");
         builder.setCredentialStore(credentialStore);
-        builder.setScopes(Collections.singletonList("https://picasaweb.google.com/data/"));
+        builder.setScopes(Collections.singletonList("https://www.googleapis.com/auth/photoslibrary.appendonly"));
         AuthorizationFlow flow = builder.build();
 
         controller =
@@ -63,7 +65,7 @@ class AuthenticationManager {
 
                     @Override
                     public String getRedirectUri() throws IOException {
-                        return "http://localhost/Callback";
+                        return "https://localhost/Callback";
                     }
 
                     @Override
@@ -123,7 +125,7 @@ class AuthenticationManager {
         Credential creds = future.getResult();
         creds.refreshToken();
         Logger.info("Credentials obtained");
-        authenticatedClient = new PicasawebClient(creds);
+        authenticatedClient = new GooglePhotosClient(creds);
         return authenticatedClient;
     }
 
